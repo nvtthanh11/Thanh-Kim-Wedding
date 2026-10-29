@@ -1,0 +1,83 @@
+/* Fix layering so couple photos are not covered by decorative backgrounds */
+#page,
+.fh5co-cover,
+.fh5co-cover .display-t,
+.fh5co-cover .display-tc,
+#fh5co-couple,
+#fh5co-couple .couple-wrap,
+#fh5co-couple .couple-half,
+#fh5co-couple .groom,
+#fh5co-couple .bride,
+#fh5co-couple .groom img,
+#fh5co-couple .bride img,
+#fh5co-couple .heart {
+  position: relative;
+  z-index: 1;
+}
+
+.fh5co-cover .overlay {
+  z-index: 0;
+}
+
+.fh5co-cover .display-tc {
+  z-index: 2;
+}
+
+.fh5co-cover .display-tc > * {
+  position: relative;
+  z-index: 2;
+}
+
+#fh5co-couple .couple-wrap {
+  z-index: 3;
+}
+
+#fh5co-couple .groom,
+#fh5co-couple .bride {
+  z-index: 4;
+}
+
+#fh5co-couple .groom img,
+#fh5co-couple .bride img {
+  position: relative;
+  z-index: 5;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#fh5co-couple .heart {
+  z-index: 6;
+}
+
+/* Prevent decorative elements from sitting above the actual couple */
+#fh5co-header::before,
+#fh5co-header::after,
+.fh5co-cover::before,
+.fh5co-cover::after,
+.hero-ornament,
+.hero-flower,
+.hero-lineart {
+  pointer-events: none;
+  z-index: 1 !important;
+}
+
+/* Make the top section safe on mobile/tablet */
+@media screen and (max-width: 768px) {
+  #fh5co-couple .couple-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  #fh5co-couple .couple-half {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  #fh5co-couple .heart {
+    margin: 0;
+    transform: rotate(90deg);
+  }
+}
